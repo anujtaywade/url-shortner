@@ -1,6 +1,10 @@
 
 import { NextResponse } from "next/server";
 
-export function GET(){
-    return NextResponse.json({message :"hello anuj"})
+export async function POST(req : Request){
+    try {
+        
+    } catch (error) {
+        
+    }
 }
