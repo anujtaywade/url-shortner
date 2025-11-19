@@ -13,3 +13,11 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model project {
+  id String @id @default(nanoid())
+  shortURl String @unique
+  originalUrl String
+  clicks Int @default(0)
+  createdAt DateTime @default(now())
+}
