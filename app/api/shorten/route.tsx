@@ -2,11 +2,14 @@
 import { nanoid } from "nanoid";
 import next from "next";
 import { NextResponse } from "next/server";
-import {prisma} from '@/lib/db'
+import Url from '@/lib/models/schema'
+import {connectDb} from '@/lib/mongodb'
+
 
 
 export async function POST(req : Request){
     try {
+        await connectDb ();
        
         const {url } = await req.json() 
         
@@ -26,17 +29,17 @@ export async function POST(req : Request){
 
         const shortUrl = nanoid(7)
 
-        const newLink = await prisma.project.create({
-            data : {
+        const newUrl = await Url.create({
+            
                 originalUrl : url ,
                 shortUrl : shortUrl,
             
-            }
+            
         })
 
         return NextResponse.json({
             message : "url shortned successful",
-            data : newLink,
+            data : newUrl,
         },{status : 201})
         
 
