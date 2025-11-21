@@ -6,7 +6,7 @@ const UrlSchema = new mongoose.Schema({
   shortUrl: {
     type: String,
     required: true,
-    default: () => nanoid,
+    default: () => nanoid(),
   },
 
   originalUrl: {
@@ -21,4 +21,4 @@ const UrlSchema = new mongoose.Schema({
 },
 {timestamps : true});
 
-export default models.schema || model("schema",UrlSchema)
+export default models.Url || model("Url",UrlSchema)
