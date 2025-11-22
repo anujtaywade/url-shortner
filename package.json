@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.90.10",
+    "axios": "^1.13.2",
     "lucide-react": "^0.554.0",
     "mongoose": "^8.20.0",
     "nanoid": "^5.1.6",
