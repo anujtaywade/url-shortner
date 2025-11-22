@@ -1,6 +1,6 @@
 
 "use client";
-import UrlForm from '@/app/components/UrlForm';
+import UrlForm from '@/app/components/urlForm';
 
 export default function Home() {
 

@@ -2,12 +2,27 @@
 
 import { Clipboard ,Copy } from "lucide-react";
 import {useState} from 'react'
+import {getUrl, useCreateUrl} from '@/app/hooks/UseUrlQuery';
 
 export default function UrlForm () {
 
-      const [copiedUrl, setcopiedUrl] = useState("");
   const [originalUrl, setoriginalUrl] = useState("");
   const [shortUrl, setshortUrl] = useState("");
+
+  const createUrl = useCreateUrl()
+  const {data, isLoading} = getUrl()
+
+  const handleSubmit = (e : React.FormEvent)=> {
+    e.preventDefault();
+    if(!originalUrl.trim()) return ;
+
+    createUrl.mutate(originalUrl,{
+      onSuccess : (data : any)=>{
+        setshortUrl(data.shortUrl)
+      }
+    })
+    setoriginalUrl("")
+  }
 
   return (
     <div className="h-screen flex flex-col">
@@ -26,7 +41,7 @@ export default function UrlForm () {
           <div className="flex items-center gap-3 mb-4">
             <input
               type="text"
-              onChange={(e)=>(e.target.value)}
+              onChange={(e)=>setoriginalUrl(e.target.value)}
               value={originalUrl} 
               placeholder="Paste your URL here..."
               className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-400"
@@ -39,7 +54,9 @@ export default function UrlForm () {
           </div>
 
         
-          <button className="w-full py-2 mt-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition">
+          <button 
+          onClick={handleSubmit}
+          className="w-full py-2 mt-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition">
             Shorten URL
           </button>
 
@@ -47,12 +64,11 @@ export default function UrlForm () {
           <div className="mt-6">
             <p className="text-gray-300 mb-2 text-sm">Your Shortened Link:</p>
             <div className="flex items-center gap-3">
-              <input
-                type="text"
-                readOnly
-                placeholder="Short URL will appear here"
-                className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-500"
-              />
+              {data?.map((item:any)=>(
+                <div className="p-3 bg-gray-700 rounded text-white">
+                  <p>original : {item.originalUrl}</p>
+                </div>
+              ))}
               <button className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
                 <Copy  className="size-6 text-white cursor-pointer " />
               </button>
