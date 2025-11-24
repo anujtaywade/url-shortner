@@ -67,7 +67,7 @@
               {shortUrl && (
                 <div className="flex items-center gap-3">
                 <p>
-                 <span className="text-blue-400">{`${process.env.NEXT_PUBLIC_DEFAULT_URL}/api/Redirect/${shortUrl}`}</span>
+                 <span className="text-blue-400">{`${process.env.NEXT_PUBLIC_DEFAULT_URL}/api/redirect/${shortUrl}`}</span>
                 </p>
                 <button className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
                   <Copy  className="size-6 text-white cursor-pointer " />

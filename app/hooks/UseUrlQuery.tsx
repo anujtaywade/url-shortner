@@ -9,7 +9,7 @@ export const getUrl = (id:string) => {
     queryFn : async () => {
       if (!id) return null ;
 
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_DEFAULT_URL}/api/Redirect?_id=${id}`)
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_DEFAULT_URL}/api/redirect?_id=${id}`)
         return res.data.data 
     },
     enabled : !!id ,   
