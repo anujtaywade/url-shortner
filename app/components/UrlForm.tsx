@@ -45,6 +45,9 @@
                 value={originalUrl} 
                 placeholder="Paste your URL here..."
                 className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-400"
+                onKeyDown={(e)=>{
+                  if (e.key === "Enter")handleSubmit(e)
+                }}
               />
               <button className=" p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
                 <Clipboard 
@@ -66,9 +69,10 @@
               
               {shortUrl && (
                 <div className="flex items-center gap-3">
-                <p className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-400">
+                <p className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-400 break-all">
                  <span className="text-blue-400">{`${process.env.NEXT_PUBLIC_DEFAULT_URL}/api/redirect/${shortUrl}`}</span>
                 </p>
+              
                 <button className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
                   <Copy  className="size-6 text-white cursor-pointer " />
                 </button>
