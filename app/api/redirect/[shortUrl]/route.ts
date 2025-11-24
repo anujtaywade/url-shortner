@@ -1,12 +1,13 @@
     import { NextResponse } from "next/server";
     import { connectDb } from "@/lib/mongodb";
     import Url from "@/lib/models/schema";
+import { promises } from "dns";
 
-    export async function GET(req: Request, { params }: { params: { shortUrl: string } }) {
+    export async function GET(req: Request,context : { params: Promise<{ shortUrl: string }> }) {
     try {
         await connectDb();
 
-        const { shortUrl } = await params;
+        const { shortUrl } =await context.params ;
 
         const record = await Url.findOne({ shortUrl });
 

@@ -66,7 +66,7 @@
               
               {shortUrl && (
                 <div className="flex items-center gap-3">
-                <p>
+                <p className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-400">
                  <span className="text-blue-400">{`${process.env.NEXT_PUBLIC_DEFAULT_URL}/api/redirect/${shortUrl}`}</span>
                 </p>
                 <button className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
