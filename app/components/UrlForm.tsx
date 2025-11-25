@@ -8,7 +8,6 @@
 
     const [originalUrl, setoriginalUrl] = useState("");
     const [shortUrl, setshortUrl] = useState("");
-    // const [textValue, settextValue] = useState<string>("");
 
     const createUrl = useCreateUrl()
     
@@ -33,6 +32,16 @@
         console.log("text copied :",generatedUrl)
       } catch (error) {
         console.log("error in copying",error)
+      }
+    }
+
+    const handlePaste = async () => {
+      try {
+        const pasted =  await navigator.clipboard.readText()
+        setoriginalUrl(pasted)
+        console.log("text pasted",pasted)
+      } catch (error) {
+        console.log("error in pasting",error)
       }
     }
 
@@ -61,7 +70,7 @@
                   if (e.key === "Enter")handleSubmit(e)
                 }}
               />
-              <button className=" p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
+              <button onClick={handlePaste} className=" p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
                 <Clipboard 
                 className="size-6 text-white cursor-pointer"/>
                 
