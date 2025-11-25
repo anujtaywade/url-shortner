@@ -8,6 +8,7 @@
 
     const [originalUrl, setoriginalUrl] = useState("");
     const [shortUrl, setshortUrl] = useState("");
+    // const [textValue, settextValue] = useState<string>("");
 
     const createUrl = useCreateUrl()
     
@@ -22,6 +23,17 @@
         }
       })
       setoriginalUrl("")
+    }
+
+    const handleCopy =async()=>{
+      const generatedUrl = `${process.env.NEXT_PUBLIC_DEFAULT_URL}/api/redirect/${shortUrl}`
+
+      try {
+        await navigator.clipboard.writeText(generatedUrl)
+        console.log("text copied :",generatedUrl)
+      } catch (error) {
+        console.log("error in copying",error)
+      }
     }
 
     return (
@@ -42,7 +54,7 @@
               <input
                 type="text"
                 onChange={(e)=>setoriginalUrl(e.target.value)}
-                value={originalUrl} 
+                value={originalUrl } 
                 placeholder="Paste your URL here..."
                 className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-400"
                 onKeyDown={(e)=>{
@@ -69,12 +81,12 @@
               
               {shortUrl && (
                 <div className="flex items-center gap-3">
-                <p className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-400 break-all">
+                <p  className="flex-1 border border-gray-600 rounded-lg px-3 py-2 bg-gray-900 text-white outline-none placeholder-gray-400 break-all">
                  <span className="text-blue-400">{`${process.env.NEXT_PUBLIC_DEFAULT_URL}/api/redirect/${shortUrl}`}</span>
                 </p>
               
-                <button className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
-                  <Copy  className="size-6 text-white cursor-pointer " />
+                <button onClick={handleCopy} className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
+                  <Copy className="size-6 text-white cursor-pointer " />
                 </button>
               </div>
               )}
