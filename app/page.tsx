@@ -2,13 +2,9 @@
 "use client";
 import UrlForm from '@/app/components/urlForm';
 
+
 export default function Home() {
 
-
-  const handleSubmit=()=>{
-    
-
-  }
 
   return (
     <div className="h-screen bg-gray-900 flex flex-col">

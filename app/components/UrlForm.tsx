@@ -4,7 +4,7 @@
   import {useState} from 'react'
   import {getUrl, useCreateUrl} from '@/app/hooks/UseUrlQuery';
 
-  export default function UrlForm () {
+  export default function urlForm () {
 
     const [originalUrl, setoriginalUrl] = useState("");
     const [shortUrl, setshortUrl] = useState("");
